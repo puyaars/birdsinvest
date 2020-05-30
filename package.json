@@ -6,22 +6,24 @@
   "scripts": {
     "dev": "nodemon  --exec babel-node src/index.js ENVIRONMENT=development",
     "start": "babel-node src/index.js ENVIRONMENT=development",
-    "build": "babel src -d lib",
-    "prod": "node lib ENVIRONMENT=production"
+    "build": "concurrently \"babel src -d lib\" \"next build\"",
+    "prod": "node lib ENVIRONMENT=production",
+    "deploy" : "pm2 start ecosystem.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.6",
-    "@babel/cli": "^7.8.4",
+    "concurrently": "^5.2.0",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
-    "bignumber": "^1.1.0",
+    "bignumber.js": "^9.0.0",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "connect-redis": "^4.0.4",
@@ -33,8 +35,12 @@
     "helmet": "^3.22.0",
     "mongoose": "^5.9.15",
     "mongoose-bignumber": "^1.2.0",
+    "mongoose-hidden": "^1.9.0",
+    "next": "^9.4.4",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "redis": "^3.0.2"
   }
 }
