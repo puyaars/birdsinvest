@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       script: "lib/index.js",
-      name: "moneybirds",
+      name: "birdinv",
       watch: "lib",
       instances: "max",
       exec_mode: "cluster",

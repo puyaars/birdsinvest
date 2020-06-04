@@ -8,17 +8,24 @@
     "start": "babel-node src/index.js ENVIRONMENT=development",
     "build": "concurrently \"babel src -d lib\" \"next build\"",
     "prod": "node lib ENVIRONMENT=production",
-    "deploy" : "pm2 start ecosystem.config.js"
+    "deploy": "pm2 start ecosystem.config.js",
+    "test": "jest --runInBand ./test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.6",
+    "babel-jest": "^26.0.1",
     "concurrently": "^5.2.0",
+    "jest": "^26.0.1",
+    "mongodb-memory-server": "^6.6.1",
     "nodemon": "^2.0.4"
   },
   "dependencies": {

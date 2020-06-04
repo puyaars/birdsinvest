@@ -38,7 +38,7 @@ const UserSchema = new Schema({
       type: Map,
       of: Schema.Types.BigNumber,
       default: getDefault,
-    }
+    },
   },
   birds: {
     type: Map,
@@ -133,6 +133,18 @@ UserSchema.methods.buyBirds = function (name, amount) {
   // todo: save an snappShot
   this.calcEggs();
 
+  return true;
+};
+
+UserSchema.methods.replenish = function (amount) {
+  this.charge.purchase = this.charge.purchase.plus(amount);
+};
+
+UserSchema.methods.convert = function (amount) {
+  if (!this.charge.withdraw.gt(amount))
+    throw new Error("enaugh withdraw coins unavaleble");
+  this.charge.purchase = this.charge.purchase.plus(amount);
+  this.charge.withdraw = this.charge.withdraw.minus(amount);
   return true;
 };
 
